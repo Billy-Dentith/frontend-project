@@ -15,6 +15,14 @@ export const getArticleById = async (articleId) => {
 }
 
 export const getArticlesComments = async (articleId) => {
-    const response = await newsApi.get(`articles/${articleId}/comments`);
+    const response = await newsApi.get(`/articles/${articleId}/comments`);
     return response.data;
+}
+
+export const patchVote = async (articleId, vote) => {
+    const response = await newsApi.patch(`/articles/${articleId}`, {
+        inc_votes: vote
+    }
+    );
+    return response.data; 
 }
