@@ -30,7 +30,7 @@ const Articles = () => {
 
     return (
         <>
-            <h1>Articles</h1>
+            <h1 id="page-header">Articles</h1>
             <ul className="article-list">
             {articles.map((article) => {
                 let date = article.created_at.replace('T', ' ').substring(0, 16);
