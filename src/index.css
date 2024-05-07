@@ -45,6 +45,37 @@ h1 {
   padding-top: 65px;
   text-align: center;
 }
+h2 {
+  text-align: center;
+  text-transform: capitalize;
+}
+#article-text {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+#article-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+#votes-comments {
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+#article-votes {
+  text-align: left;
+}
+#article-comments {
+  text-align: right;
+}
 
 #loading {
   text-align: center;
@@ -95,7 +126,7 @@ button {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: black;
     background-color: #ffffff;
   }
   a:hover {

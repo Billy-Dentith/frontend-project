@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import { getArticles } from "../api";
 import ArticleCard from "./ArticleCard";
 
@@ -35,6 +36,7 @@ const Articles = () => {
                 let date = article.created_at.replace('T', ' ').substring(0, 16);
                 return (
                     <li key={article.article_id}>
+                        <Link to={`/${article.article_id}`}>
                         <ArticleCard>
                         <>
                             <img id= 'article-image' src={article.article_img_url}/>
@@ -46,6 +48,7 @@ const Articles = () => {
                             <p><b>Date Posted: </b>{date}</p>
                         </div>
                         </ArticleCard>
+                        </Link>
                     </li>
                 )
             })}
