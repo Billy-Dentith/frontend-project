@@ -46,6 +46,11 @@ h1 {
   text-align: center;
 }
 
+#loading {
+  text-align: center;
+  padding-top: 50%;
+}
+
 ul {
   list-style: none;
   list-style-type: none;
