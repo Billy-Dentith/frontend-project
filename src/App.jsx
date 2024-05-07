@@ -1,11 +1,17 @@
-import { useState } from 'react'
 import './App.css'
+import { Routes, Route } from "react-router-dom";
+import { useState } from 'react'
+import Header from './components/Header'
+import Articles from './components/Articles';
 
 function App() {
 
   return (
     <>
-      <h1>Hello World...</h1>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Articles/>}></Route>
+      </Routes>
     </>
   )
 }
