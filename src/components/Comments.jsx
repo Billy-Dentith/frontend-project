@@ -22,18 +22,22 @@ const Comments = ({currentArticleId}) => {
     return (
         <>
             <h2>Comments</h2>
+            <ul className="comments-list">
             {comments.map((comment) => {
                 return (
-                    <CommentCard>
-                        <p>{comment.body}</p>
-                        <div id="comment-bottom">
-                            <p>{comment.author}</p>
-                            <p>{comment.votes}</p>
-                            <p>{comment.created_at.replace('T', ' ').substring(0, 16)}</p>
-                        </div>
-                    </CommentCard>
+                    <li key={comment.comment_id}>
+                        <CommentCard>
+                            <p>{comment.body}</p>
+                            <div id="comment-bottom">
+                                <p>{comment.author}</p>
+                                <p>{comment.votes}</p>
+                                <p>{comment.created_at.replace('T', ' ').substring(0, 16)}</p>
+                            </div>
+                        </CommentCard>
+                    </li>
                 )
             })}
+            </ul>
         </>
     )
 }
