@@ -8,3 +8,8 @@ export const getArticles = async () => {
     const response = await newsApi.get('/articles')
     return response.data;
 }
+
+export const getArticleById = async (articleId) => {
+    const response = await newsApi.get(`/articles/${articleId}`);
+    return response.data;
+}
