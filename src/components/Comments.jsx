@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { getArticlesComments } from "../api";
 import CommentCard from "./CommentCard";
+import PostCommentForm from "./PostCommentForm";
 
 const Comments = ({currentArticleId}) => {
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isPostCommentShowing, setIsPostCommentShowing] = useState(false);
 
     useEffect(() => {
         getArticlesComments(currentArticleId).then((res) => {
@@ -12,6 +14,10 @@ const Comments = ({currentArticleId}) => {
             setIsLoading(false);
         })
     }, [comments])
+
+    const handlePostCommentClick = () => {
+        setIsPostCommentShowing((isPostCommentShowing) => !isPostCommentShowing)
+    }
 
     if (isLoading) {
         return (
@@ -22,6 +28,10 @@ const Comments = ({currentArticleId}) => {
     return (
         <>
             <h2>Comments</h2>
+            <button id="post-comment-button" onClick={handlePostCommentClick}>Post a comment</button>
+            <div>
+                {isPostCommentShowing && <PostCommentForm currentArticleId={currentArticleId}/>}
+            </div>
             <ul className="comments-list">
             {comments.map((comment) => {
                 return (
