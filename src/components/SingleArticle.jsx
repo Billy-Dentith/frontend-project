@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticleById } from "../api";
+import { getArticleById, patchVote } from "../api";
 import { useParams } from "react-router-dom";
 import SingleArticleCard from "./SingleArticleCard";
 import Comments from "./Comments";
@@ -9,6 +9,8 @@ const IndividualArticle = () => {
     const [currentArticle, setCurrentArticle] = useState('');
     const [isCommentsShowing, setIsCommentsShowing] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);
+    const [voteChange, setVoteChange] = useState(0);
+    const [error, setError] = useState('')
 
     useEffect(() => {
         getArticleById(article_id).then((res) => {
@@ -20,6 +22,17 @@ const IndividualArticle = () => {
 
     const handleCommentsClick = () => {
         setIsCommentsShowing((isCommentsShowing) => !isCommentsShowing); 
+    }
+
+    const handleVote = (vote) => {
+        patchVote(currentArticle.article_id, vote).then(() => {
+            setCurrentArticle((currArticle) => {
+                return {...currArticle, votes: currArticle.votes + vote}
+            })
+            setVoteChange((currVote) => currVote + vote)
+        }).catch((err) => {
+            setError('Unable to process vote. Please try again later.')
+        })
     }
 
     if (isLoading) {
@@ -39,11 +52,20 @@ const IndividualArticle = () => {
             <div id="votes-comments">
                 <section id="article-votes">
                     <h3>Votes</h3>
-                    <h3>{currentArticle.votes}</h3>
+                    <section id="votes-counter">
+                        <button className="vote-button" disabled={voteChange === -1} onClick={() => handleVote(-1)}>
+                            -
+                        </button>
+                        <p className="article-numbers">{currentArticle.votes}</p>
+                        <button className="vote-button" disabled={voteChange === 1} onClick={() => handleVote(1)}>
+                            +
+                        </button>
+                    </section>
+                    <p>{error}</p>
                 </section>
                 <button id="article-comments" onClick={handleCommentsClick}>
                     <h3>Comments</h3>
-                    <h3>{currentArticle.comment_count}</h3>
+                    <p className="article-numbers">{currentArticle.comment_count}</p>
                 </button>
             </div>
             <div>
