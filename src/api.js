@@ -38,3 +38,13 @@ export const postComment = async (user, articleId, commentBody) => {
 export const deleteComment = async (commentId) => {
     const response = await newsApi.delete(`/comments/${commentId}`)
 }
+
+export const getTopics = async () => {
+    const response = await newsApi.get('/topics');
+    return response.data;
+}
+
+export const getArticlesByTopic = async (topicSlug) => {
+    const response = await newsApi.get(`/articles?topic=${topicSlug}`)
+    return response.data;
+}
