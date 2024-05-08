@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getArticlesByTopic } from "../api";
 import ArticleCard from "./ArticleCard";
 
 const SingleTopic = () => {
     const [articlesByTopic, setArticlesByTopic] = useState('');
+    const [sortBy, setSortBy] = useState('created_at');
+    const [sortDirection, setSortDirection] = useState('desc');
     const [isLoading, setIsLoading] = useState(true);
     const { slug } = useParams();
+    const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
-        getArticlesByTopic(slug).then((res) => {
+        getArticlesByTopic(slug, sortBy, sortDirection).then((res) => {
             setArticlesByTopic(res.articles);
             setIsLoading(false);
+            setSearchParams({ 
+                sort_by: sortBy, 
+                order: sortDirection 
+            });
         })
-    }, [])
+    }, [sortBy, sortDirection])
     
     if (isLoading) {
         return (
@@ -24,6 +31,27 @@ const SingleTopic = () => {
     return (
         <>
             <h1 className="page-header">{`${slug} Articles`}</h1>
+            <form className="sort-form">
+                <select 
+                    name="sort-by" 
+                    id="sort-by-select" 
+                    onChange={(e) => {
+                        setSortBy(e.target.value)
+                    }}>
+                    <option value='created_at'>Date</option>
+                    <option value='votes'>Votes</option>
+                    <option value='comment_count'>Comment Count</option>
+                </select>
+                <select 
+                    name="direction" 
+                    id="direction-select" 
+                    onChange={(e) => {
+                        setSortDirection(e.target.value)
+                    }}>
+                    <option value='desc'>Descending</option>
+                    <option value='asc'>Ascending</option>
+                </select>
+            </form>
             <ul className="article-list">
             {articlesByTopic.map((article) => {
                 let date = article.created_at.replace('T', ' ').substring(0, 16);
