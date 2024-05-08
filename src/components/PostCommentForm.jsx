@@ -3,24 +3,33 @@ import { postComment } from '../api';
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
-const PostCommentForm = ({ currentArticleId }) => {
+const PostCommentForm = ({ currentArticleId, setRefreshPage }) => {
     const [commentBody, setCommentBody] = useState('');
-    const [commentUser, setCommentUser] = useState('');
-    const [isPosted, setIsPosted] = useState('');
+    // const [commentUser, setCommentUser] = useState('');
+    const [postStatus, setPostStatus] = useState('');
     const [disabled, setDisabled] = useState(false);
+    const [buttonText, setButtonText] = useState('Submit');
     const { user } = useContext(UserContext); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setButtonText('Submitting...');
+        setDisabled(true);
         postComment(user, currentArticleId, commentBody).then((res) => {
-            setIsPosted('Comment Posted!')
-            setDisabled(true)
+            setPostStatus('Comment Posted!')
             setTimeout(() => {
-                setDisabled(false);
-            }, 60000);
+                setPostStatus('')
+            }, 5000)
+            setDisabled(false);
+            setButtonText('Submit');
+            setRefreshPage(true);
         })
         .catch((err) => {
-            setIsPosted('Unable to post comment. Please try again later.')
+            setPostStatus('Unable to post comment. Please try again later.')
+            setTimeout(() => {
+                setPostStatus('');
+            }, 5000)
+            setDisabled(false);
         })
     }
 
@@ -39,8 +48,8 @@ const PostCommentForm = ({ currentArticleId }) => {
                     value={commentBody}
                     required
                 ></textarea>
-                <button disabled={disabled}>Submit!</button>
-                <p>{isPosted}</p>
+                <button disabled={disabled}>{buttonText}</button>
+                <p>{postStatus}</p>
             </form>
         </>
     )
