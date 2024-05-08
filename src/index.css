@@ -68,6 +68,32 @@ ul {
   padding-left: 0;
 }
 
+.sort-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#sort-by-select {
+  /* display: block; */
+  /* margin: 0 auto; */
+  margin-right: 5px;
+  padding: 5px;
+  width: 25%;
+  height: 35px;
+  border-radius: 10px;
+  font-size: large;
+}
+#direction-select {
+  /* display: block;
+  margin: 0 auto; */
+  margin-left: 5px;
+  padding: 5px;
+  width: 25%;
+  height: 35px;
+  border-radius: 10px;
+  font-size: large;
+}
+
 #topic {
   text-transform: capitalize;
 }
