@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
-import { getArticles } from "../api";
+import { Link, useParams } from "react-router-dom";
+import { getArticlesByTopic } from "../api";
 import ArticleCard from "./ArticleCard";
 
-const Articles = () => {
-    const [articles, setArticles] = useState([]);
+const SingleTopic = () => {
+    const [articlesByTopic, setArticlesByTopic] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false); 
+    const { slug } = useParams();
 
     useEffect(() => {
-        getArticles().then((res) => {
-            setArticles(res.articles);
+        getArticlesByTopic(slug).then((res) => {
+            setArticlesByTopic(res.articles);
             setIsLoading(false);
         })
-        .catch((err) => {
-            setIsError(true);
-        })
-    })
-
-    if (isError) {
-        return <h2>Error!</h2>
-    }
-
+    }, [])
+    
     if (isLoading) {
         return (
             <h2 id="loading">Loading...</h2>
@@ -30,9 +23,9 @@ const Articles = () => {
 
     return (
         <>
-            <h1 className="page-header">Articles</h1>
+            <h1 className="page-header">{`${slug} Articles`}</h1>
             <ul className="article-list">
-            {articles.map((article) => {
+            {articlesByTopic.map((article) => {
                 let date = article.created_at.replace('T', ' ').substring(0, 16);
                 return (
                     <li key={article.article_id}>
@@ -57,4 +50,4 @@ const Articles = () => {
     )
 }
 
-export default Articles;
+export default SingleTopic;

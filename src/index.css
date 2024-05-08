@@ -45,11 +45,12 @@ h1 {
   padding-top: 20px;
   text-align: center;
 }
-#page-header {
+.page-header {
   font-size: 3em;
   line-height: 1.1;
   padding-top: 65px;
   text-align: center;
+  text-transform: capitalize;
 }
 h2 {
   text-align: center;
@@ -212,6 +213,17 @@ ul {
 }
 #comment-form > p {
   text-align: center;
+}
+
+.topics-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  border: solid black;
+  border-radius: 10px;
+  margin: 10px 20px;
+  padding: 10px;
 }
 
 button {
