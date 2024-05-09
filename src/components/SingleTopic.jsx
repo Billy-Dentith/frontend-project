@@ -8,6 +8,7 @@ const SingleTopic = () => {
     const [sortBy, setSortBy] = useState('created_at');
     const [sortDirection, setSortDirection] = useState('desc');
     const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
     const { slug } = useParams();
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -19,9 +20,25 @@ const SingleTopic = () => {
                 sort_by: sortBy, 
                 order: sortDirection 
             });
-        })
+        }).catch((err) => {
+            console.log('error');
+            setIsError(true);
+        });
     }, [sortBy, sortDirection])
     
+    if (isError) {
+        return (
+            <div className="error-page">
+                <h1 id="error">Topic not found...</h1>
+                <h2>Click the button below to view all of our topics:</h2>
+                <Link to={'/topics'}>
+                    <div id="redirect-button">
+                        <h2>View All Topics</h2>
+                    </div>
+                </Link>  
+            </div>
+        )
+    }
     if (isLoading) {
         return (
             <h2 id="loading">Loading...</h2>
