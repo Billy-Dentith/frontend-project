@@ -7,6 +7,7 @@ import DeleteComment from "./DeleteComment";
 const Comments = ({currentArticleId}) => {
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false); 
     const [isPostCommentShowing, setIsPostCommentShowing] = useState(false);
     const [refreshPage, setRefreshPage] = useState(false); 
 
@@ -15,11 +16,18 @@ const Comments = ({currentArticleId}) => {
             setComments(res.comments);
             setIsLoading(false);
         })
+        .catch((err) => {
+            setIsError(true);
+        })
         setRefreshPage(false);
     }, [refreshPage])
 
     const handlePostCommentClick = () => {
         setIsPostCommentShowing((isPostCommentShowing) => !isPostCommentShowing)
+    }
+
+    if (isError) {
+        return <h2 className="comments-error-header">Server Error!</h2>
     }
 
     if (isLoading) {

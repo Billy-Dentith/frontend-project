@@ -273,6 +273,13 @@ button {
   padding-top: 150px;
   text-align: center;
 }
+.comments-error-header {
+  font-size: 2em;
+  line-height: 1.1;
+  padding-top: 150px;
+  padding-bottom: 25px;
+  text-align: center;
+}
 #redirect-button {
   border: solid black;
   border-radius: 10px;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams, useParams } from 'react-router-dom'
 import { getArticles } from "../api";
 import ArticleCard from "./ArticleCard";
+import ErrorPage from "./ErrorPage";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
@@ -29,20 +30,9 @@ const Articles = () => {
 
     if (isError) {
         return (
-            <div className="error-page">
+            <ErrorPage>
                 <h1 id="error">Article / Topic not found...</h1>
-                <h2>Click the button below to view all of our articles or topics:</h2>
-                <Link className="link" to="/articles">
-                <div id="redirect-button">
-                        <h2>View All Articles</h2>
-                    </div>
-                </Link>
-                <Link to={'/topics'}>
-                    <div id="redirect-button">
-                        <h2>View All Topics</h2>
-                    </div>
-                </Link>  
-            </div>
+            </ErrorPage>
         )
     }
 

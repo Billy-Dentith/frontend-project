@@ -18,7 +18,7 @@ const Topics = () => {
     }, [])
 
     if (isError) {
-        return <h2>Error!</h2>
+        return <h1 className="error-header">Server Error!</h1>
     }
 
     if (isLoading) {
