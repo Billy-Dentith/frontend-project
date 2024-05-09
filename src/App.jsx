@@ -6,6 +6,7 @@ import SingleArticle from './components/SingleArticle'
 import { UserProvider } from './contexts/UserContext';
 import Topics from './components/Topics';
 import SingleTopic from './components/SingleTopic';
+import NotFound from './components/NotFound';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/articles/:article_id' element={<SingleArticle/>}></Route>
         <Route path='/topics' element={<Topics/>}></Route>
         <Route path='/topics/:slug' element={<SingleTopic/>}></Route>
+        <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </UserProvider>
   )

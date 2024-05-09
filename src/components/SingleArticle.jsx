@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticleById, patchVote } from "../api";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import SingleArticleCard from "./SingleArticleCard";
 import Comments from "./Comments";
 
@@ -9,6 +9,7 @@ const IndividualArticle = () => {
     const [currentArticle, setCurrentArticle] = useState('');
     const [isCommentsShowing, setIsCommentsShowing] = useState(false); 
     const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
     const [voteChange, setVoteChange] = useState(0);
     const [error, setError] = useState('')
 
@@ -17,7 +18,10 @@ const IndividualArticle = () => {
             res.article.created_at = res.article.created_at.replace('T', ' ').substring(0, 16);
             setCurrentArticle(res.article);
             setIsLoading(false);
-        })
+        }).catch((err) => {
+            setIsError(true);
+            setIsLoading(false);
+        });
     }, [article_id])
 
     const handleCommentsClick = () => {
@@ -35,6 +39,19 @@ const IndividualArticle = () => {
         })
     }
 
+    if (isError) {
+        return (
+            <div className="error-page">
+                <h1 id="error">Article not found...</h1>
+                <h2>Click the button below to view all of our articles:</h2>
+                <Link to={'/articles'}>
+                    <div id="redirect-button">
+                        <h2>View All Articles</h2>
+                    </div>
+                </Link>  
+            </div>
+        )
+    }
     if (isLoading) {
         return (
             <h2 id="loading">Loading...</h2>

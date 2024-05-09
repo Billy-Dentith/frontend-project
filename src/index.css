@@ -61,6 +61,11 @@ h2 {
   text-align: center;
   padding-top: 50%;
 }
+#error {
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 25px;
+}
 
 ul {
   list-style: none;
@@ -260,6 +265,22 @@ button {
   font-family: inherit;
   background-color: white;
   cursor: pointer;
+}
+
+.error-header {
+  font-size: 3em;
+  line-height: 1.1;
+  padding-top: 150px;
+  text-align: center;
+}
+#redirect-button {
+  border: solid black;
+  border-radius: 10px;
+  margin: 50px 20px;
+  padding: 10px;
+}
+.error-page > h2 {
+  text-transform: none;
 }
 
 @media (prefers-color-scheme: light) {
