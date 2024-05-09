@@ -4,8 +4,14 @@ const newsApi = axios.create({
     baseURL: 'https://news-app-8vge.onrender.com/api'
 })
 
-export const getArticles = async (sortBy, sortDirection) => {
-    const response = await newsApi.get(`/articles?sort_by=${sortBy}&order=${sortDirection}`)
+export const getArticles = async (sortBy, sortDirection, topicSlug) => {
+    let queryStr = `/articles?`
+    if (topicSlug) {
+        queryStr += `topic=${topicSlug}&`
+    }
+    queryStr += `sort_by=${sortBy}&order=${sortDirection}`
+
+    const response = await newsApi.get(queryStr)
     return response.data;
 }
 
@@ -41,10 +47,5 @@ export const deleteComment = async (commentId) => {
 
 export const getTopics = async () => {
     const response = await newsApi.get('/topics');
-    return response.data;
-}
-
-export const getArticlesByTopic = async (topicSlug, sortBy, sortDirection) => {
-    const response = await newsApi.get(`/articles?topic=${topicSlug}&sort_by=${sortBy}&order=${sortDirection}`)
     return response.data;
 }

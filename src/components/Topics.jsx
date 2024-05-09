@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../api";
-import TopicsCard from "./TopicsCard";
 import { Link } from "react-router-dom";
 
 const Topics = () => {
@@ -36,10 +35,10 @@ const Topics = () => {
                 return (
                     <li key={topic.slug}>
                         <Link to={`/topics/${topic.slug}`}>
-                        <TopicsCard>
+                        <div className="topics-card">
                             <h2>{topic.slug}</h2>
                             <p>{topic.description}</p>
-                        </TopicsCard>
+                        </div>
                         </Link>
                     </li>
                 )
