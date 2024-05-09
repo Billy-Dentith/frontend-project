@@ -55,12 +55,12 @@ const SingleArticle = () => {
 
     return (
         <SingleArticleCard>
-            <h1>{currentArticle.title}</h1>
+            <h1 id="article-header">{currentArticle.title}</h1>
             <h2>{currentArticle.topic}</h2>
             <p id="article-text">{currentArticle.author}</p>
             <p id="article-text">{currentArticle.created_at}</p>
             <img id="article-img" src={currentArticle.article_img_url}/>
-            <p id="article-text">{currentArticle.body}</p>
+            <p id="article-body">{currentArticle.body}</p>
             <div id="votes-comments">
                 <section id="article-votes">
                     <h3>Votes</h3>
