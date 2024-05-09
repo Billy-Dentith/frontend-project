@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import SingleArticleCard from "./SingleArticleCard";
 import Comments from "./Comments";
 
-const IndividualArticle = () => {
+const SingleArticle = () => {
     const { article_id } = useParams();
     const [currentArticle, setCurrentArticle] = useState('');
     const [isCommentsShowing, setIsCommentsShowing] = useState(false); 
@@ -92,4 +92,4 @@ const IndividualArticle = () => {
     )
 }
 
-export default IndividualArticle;
+export default SingleArticle;

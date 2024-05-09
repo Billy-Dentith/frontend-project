@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useParams } from 'react-router-dom'
 import { getArticles } from "../api";
 import ArticleCard from "./ArticleCard";
 
@@ -9,24 +9,41 @@ const Articles = () => {
     const [sortDirection, setSortDirection] = useState('desc');
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false); 
+    const { slug } = useParams();
     const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
-        getArticles(sortBy, sortDirection).then((res) => {
-            setArticles(res.articles);
-            setIsLoading(false);
-            setSearchParams({ 
-                sort_by: sortBy, 
-                order: sortDirection 
-            });
-        })
-        .catch((err) => {
-            setIsError(true);
-        })
-    }, [sortBy, sortDirection])
+            getArticles(sortBy, sortDirection, slug).then((res) => {
+                setSearchParams({ 
+                    sort_by: sortBy, 
+                    order: sortDirection 
+                });
+                setArticles(res.articles);
+                setIsLoading(false);
+                setIsError(false);
+            })
+            .catch((err) => {
+                setIsError(true);
+            })
+    }, [slug, sortBy, sortDirection])
 
     if (isError) {
-        return <h2>Error!</h2>
+        return (
+            <div className="error-page">
+                <h1 id="error">Article / Topic not found...</h1>
+                <h2>Click the button below to view all of our articles or topics:</h2>
+                <Link className="link" to="/articles">
+                <div id="redirect-button">
+                        <h2>View All Articles</h2>
+                    </div>
+                </Link>
+                <Link to={'/topics'}>
+                    <div id="redirect-button">
+                        <h2>View All Topics</h2>
+                    </div>
+                </Link>  
+            </div>
+        )
     }
 
     if (isLoading) {
@@ -37,7 +54,7 @@ const Articles = () => {
 
     return (
         <>
-            <h1 className="page-header">Articles</h1>
+            <h1 className="page-header">{`${slug || 'All'} Articles`}</h1>
             <form className="sort-form">
                 <select 
                     name="sort-by" 
