@@ -3,6 +3,7 @@ import { getArticleById, patchVote } from "../api";
 import { useParams, Link } from "react-router-dom";
 import SingleArticleCard from "./SingleArticleCard";
 import Comments from "./Comments";
+import ErrorPage from "./ErrorPage";
 
 const SingleArticle = () => {
     const { article_id } = useParams();
@@ -41,15 +42,9 @@ const SingleArticle = () => {
 
     if (isError) {
         return (
-            <div className="error-page">
+            <ErrorPage>
                 <h1 id="error">Article not found...</h1>
-                <h2>Click the button below to view all of our articles:</h2>
-                <Link to={'/articles'}>
-                    <div id="redirect-button">
-                        <h2>View All Articles</h2>
-                    </div>
-                </Link>  
-            </div>
+            </ErrorPage>
         )
     }
     if (isLoading) {
