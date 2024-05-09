@@ -18,7 +18,7 @@ const Articles = () => {
                 setSearchParams({ 
                     sort_by: sortBy, 
                     order: sortDirection 
-                });
+                }, { replace: true });
                 setArticles(res.articles);
                 setIsLoading(false);
                 setIsError(false);
@@ -73,10 +73,8 @@ const Articles = () => {
                     <li key={article.article_id}>
                         <Link to={`/articles/${article.article_id}`}>
                         <ArticleCard>
-                        <>
-                            <img id= 'article-image' src={article.article_img_url}/>
-                        </>
-                        <div className="article-text">
+                        <img id= 'article-card-image' src={article.article_img_url}/>
+                        <div className="article-card-text">
                             <h3>{article.title}</h3>
                             <p><b>Author:</b> {article.author}</p>
                             <p id="topic"><b>Topic:</b> {article.topic}</p>
