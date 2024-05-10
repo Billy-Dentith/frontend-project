@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import SingleArticleCard from "./SingleArticleCard";
 import Comments from "./Comments";
 import ErrorPage from "./ErrorPage";
+import DeleteArticle from "./DeleteArticle";
 
 const SingleArticle = () => {
     const { article_id } = useParams();
@@ -13,6 +14,7 @@ const SingleArticle = () => {
     const [isError, setIsError] = useState(false);
     const [voteChange, setVoteChange] = useState(0);
     const [error, setError] = useState('')
+    const [refreshPage, setRefreshPage] = useState(false); 
 
     useEffect(() => {
         getArticleById(article_id).then((res) => {
@@ -23,7 +25,7 @@ const SingleArticle = () => {
             setIsError(true);
             setIsLoading(false);
         });
-    }, [article_id])
+    }, [article_id, refreshPage])
 
     const handleCommentsClick = () => {
         setIsCommentsShowing((isCommentsShowing) => !isCommentsShowing); 
@@ -55,10 +57,13 @@ const SingleArticle = () => {
 
     return (
         <SingleArticleCard>
+            <div id="topic-div">
+                <h2 className="topic-box">{currentArticle.topic}</h2>
+                <DeleteArticle articleAuthor={currentArticle.author} articleId={currentArticle.article_id} setRefreshPage={setRefreshPage}/>
+                {/* <button className="article-delete">Delete</button> */}
+            </div>
             <h1 id="article-header">{currentArticle.title}</h1>
-            <h2>{currentArticle.topic}</h2>
-            <p id="article-text">{currentArticle.author}</p>
-            <p id="article-text">{currentArticle.created_at}</p>
+            <p id="article-text">Posted on {currentArticle.created_at.split(' ')[0].split('-').reverse().join('-')} at {currentArticle.created_at.split(' ')[1]} by {currentArticle.author}</p>
             <img id="article-img" src={currentArticle.article_img_url}/>
             <p id="article-body">{currentArticle.body}</p>
             <div id="votes-comments">

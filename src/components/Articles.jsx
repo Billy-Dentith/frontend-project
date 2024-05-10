@@ -78,7 +78,13 @@ const Articles = () => {
                             <h3>{article.title}</h3>
                             <p><b>Author:</b> {article.author}</p>
                             <p id="topic"><b>Topic:</b> {article.topic}</p>
-                            <p><b>Date Posted: </b>{date}</p>
+                            <p><b>Posted on: </b>{date.split(' ')[0].split('-').reverse().join('-')} at {date.split(' ')[1]}</p>
+                        </div>
+                        <div className="article-card-votes">
+                            <h3>Votes</h3>
+                            <p>{article.votes}</p>
+                            <h3>Comments</h3>
+                            <p>{article.comment_count}</p>
                         </div>
                         </ArticleCard>
                         </Link>
