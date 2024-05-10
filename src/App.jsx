@@ -7,6 +7,7 @@ import { UserProvider } from './contexts/UserContext';
 import Topics from './components/Topics';
 import NotFound from './components/ErrorPage';
 import PostArticleForm from './components/PostArticleForm';
+import Users from './components/Users';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/articles/:article_id' element={<SingleArticle/>}></Route>
         <Route path='/topics' element={<Topics/>}></Route>
         <Route path='/topics/:slug' element={<Articles/>}></Route>
+        <Route path='/users' element={<Users/>}></Route>
         <Route path='/submit' element={<PostArticleForm/>}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
