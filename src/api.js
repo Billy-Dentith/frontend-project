@@ -33,6 +33,21 @@ export const patchVote = async (articleId, vote) => {
     return response.data; 
 }
 
+export const postArticle = async (author, title, body, topic, imageUrl) => {
+    const response = await newsApi.post(`/articles`, {
+        author: author,
+        title: title,
+        body: body,
+        topic: topic,
+        article_img_url: imageUrl
+    })
+    return response.data;
+}
+
+export const deleteArticle = async (articleId) => {
+    const response = await newsApi.delete(`articles/${articleId}`)
+}
+
 export const postComment = async (user, articleId, commentBody) => {
     const response = await newsApi.post(`/articles/${articleId}/comments`, {
         'body': commentBody,

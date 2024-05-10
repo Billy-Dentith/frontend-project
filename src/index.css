@@ -118,6 +118,55 @@ ul {
   margin-left: 10px;
   margin-right: 15px;
 }
+.article-card-text > h3 {
+  margin-left: 0px;
+}
+.article-card-votes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 15px;
+}
+.article-card-votes > p, h3 {
+  margin: 10px;
+}
+#article-form {
+  display: flex;
+  flex-direction: column;
+  margin: 35px;
+}
+#article-form > label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+#article-form > input, textarea, select {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-width: 2px;
+  padding: 5px;
+  height: 20px;
+}
+#article-form > textarea {
+  height: 100px;
+}
+#article-form > select {
+  height: 35px
+}
+option, select {
+  text-transform: capitalize;
+}
+#article-form > button {
+  margin: 10px;
+  padding: 10px;
+  border: solid black;
+  border-width: 2px;
+  font-weight: bold;
+}
+#article-form > p {
+  text-align: center;
+}
 
 .single-article-card {
   display: flex;
@@ -132,6 +181,18 @@ ul {
   margin-right: 10px;
   padding: 20px;
   box-shadow: 7.5px 7.5px 5px light-dark(lightgray, rgba(0, 0, 0, 0.461));
+}
+#article-header {
+  font-size: xx-large;
+  margin: 20px;
+  margin-top: 15px;
+}
+#article-delete-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 50px;
+  border: solid rgb(163, 163, 163);
 }
 #votes-comments {
   display: flex;
@@ -168,7 +229,7 @@ ul {
   border-bottom-color: light-dark(black, white);
 }
 #article-img {
-  width: 75%;
+  width: 60%;
   margin-top: 25px;
   margin-bottom: 25px;
 }
@@ -305,6 +366,29 @@ button:hover {
   display: none;
 }
 
+#topic-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.topic-box {
+  border: solid;
+  border-radius: 10px;
+  font-size: large;
+  padding: 10px;
+}
+.article-delete {
+  border: solid;
+  border-radius: 10px;
+  font-size: large;
+  padding: 10px;
+  margin: 5px;
+  height: 3.5rem;
+  justify-self: flex-end;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color: white;
@@ -316,8 +400,15 @@ button:hover {
   .article-card {
     flex-direction: column;
   }
+  .article-card-votes {
+    flex-direction: row;
+    margin-right: auto;
+  }
   #article-header {
     font-size: xx-large;
+  }
+  #article-img {
+    width: 100%;
   }
   .page-header {
     font-size: xx-large;
