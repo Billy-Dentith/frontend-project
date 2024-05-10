@@ -9,6 +9,6 @@ const Header = () => {
             <Link className="link" to="/submit">+ Create</Link> 
         </header>
     )
-}
+} 
 
 export default Header;
