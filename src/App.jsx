@@ -8,6 +8,7 @@ import Topics from './components/Topics';
 import NotFound from './components/ErrorPage';
 import PostArticleForm from './components/PostArticleForm';
 import Users from './components/Users';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/submit' element={<PostArticleForm/>}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
+      <Footer/>
     </UserProvider>
   )
 }
