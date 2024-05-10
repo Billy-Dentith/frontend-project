@@ -298,6 +298,13 @@ button:hover {
   text-transform: none;
 }
 
+#error-message {
+  text-align: center;
+}
+#error-message:empty {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color: white;

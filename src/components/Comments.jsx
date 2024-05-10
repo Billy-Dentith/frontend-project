@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticlesComments } from "../api";
+import { getArticlesComments, patchCommentVote } from "../api";
 import CommentCard from "./CommentCard";
 import PostCommentForm from "./PostCommentForm";
 import DeleteComment from "./DeleteComment";
@@ -9,6 +9,8 @@ const Comments = ({currentArticleId}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false); 
     const [isPostCommentShowing, setIsPostCommentShowing] = useState(false);
+    const [votedComments, setVotedComments] = useState({})
+    const [error, setError] = useState('')
     const [refreshPage, setRefreshPage] = useState(false); 
 
     useEffect(() => {
@@ -24,6 +26,39 @@ const Comments = ({currentArticleId}) => {
 
     const handlePostCommentClick = () => {
         setIsPostCommentShowing((isPostCommentShowing) => !isPostCommentShowing)
+    }
+
+    const handleVote = (commentId, vote) => {
+        const previousVote = votedComments[commentId] || 0;
+        let newVote;
+        if (previousVote === vote) {
+            newVote = 0; 
+        } else if (previousVote === 0) {
+            newVote = vote; 
+        } else {
+            newVote = 0;
+        }
+        patchCommentVote(commentId, vote).then(() => {
+            setComments((currComments) => {
+                return currComments.map((comment) => {
+                    if (comment.comment_id === commentId) {
+                        return {...comment, votes: comment.votes - previousVote + newVote}
+                    } 
+                    return comment
+                })
+            })
+            setVotedComments({
+                ...votedComments, 
+                [commentId]: newVote
+            })
+        }).catch((err) => {
+            setError('Unable to process vote. Please try again later.')
+        })
+    }
+
+    const isVoteDisabled = (commentId, vote) => {
+        const previousVote = votedComments[commentId] || 0;
+        return previousVote === vote;    
     }
 
     if (isError) {
@@ -54,9 +89,18 @@ const Comments = ({currentArticleId}) => {
                             </div>
                             <div className="comment-bottom">
                                 <p>{comment.author}</p>
-                                <p>{comment.votes}</p>
+                                <section id="votes-counter">
+                                    <button className="vote-button" disabled={isVoteDisabled(comment.comment_id, -1)} onClick={() => handleVote(comment.comment_id, -1)}>
+                                        -
+                                    </button>
+                                    <p>{comment.votes}</p>
+                                    <button className="vote-button" disabled={isVoteDisabled(comment.comment_id, 1)} onClick={() => handleVote(comment.comment_id, 1)}>
+                                        +
+                                    </button>
+                                </section>
                                 <p>{comment.created_at.replace('T', ' ').substring(0, 16)}</p>
                             </div>
+                            <p id="error-message">{error}</p>
                         </CommentCard>
                     </li>
                 )

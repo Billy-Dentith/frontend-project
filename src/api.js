@@ -45,6 +45,14 @@ export const deleteComment = async (commentId) => {
     const response = await newsApi.delete(`/comments/${commentId}`)
 }
 
+export const patchCommentVote = async (commentId, vote) => {
+    const response = await newsApi.patch(`/comments/${commentId}`, {
+        inc_votes: vote
+    }
+    );
+    return response.data; 
+}
+
 export const getTopics = async () => {
     const response = await newsApi.get('/topics');
     return response.data;
