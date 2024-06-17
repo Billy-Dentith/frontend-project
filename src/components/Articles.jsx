@@ -39,7 +39,8 @@ const Articles = () => {
 
     if (isLoading) {
         return (
-            <LottieLoading />
+            // <LottieLoading />
+            <h2 id="loading">Loading...</h2>
         )
     }
 
