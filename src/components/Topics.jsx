@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../api";
 import { Link } from "react-router-dom";
-import LottieLoading from "./LottieLoading";
+// import LottieLoading from "./LottieLoading";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
