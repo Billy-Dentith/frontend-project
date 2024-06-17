@@ -70,7 +70,7 @@ const Articles = () => {
             {articles.map((article) => {
                 let date = article.created_at.replace('T', ' ').substring(0, 16);
                 return (
-                    <li key={article.article_id}>
+                    <li className="article-list-item" key={article.article_id}>
                         <Link to={`/articles/${article.article_id}`}>
                         <ArticleCard>
                         <img id= 'article-card-image' src={article.article_img_url}/>

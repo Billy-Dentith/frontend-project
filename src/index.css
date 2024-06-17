@@ -14,7 +14,6 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  font-size: xx-large;
   background-color: light-dark(#ffeaee, #525252);
   padding-top: 20px;
   padding-bottom: 20px;
@@ -23,6 +22,15 @@
   height: 1.75rem;
   top: 0;
   left: 0;
+}
+#header a.link {
+  font-size: 26px;
+  font-weight: bold;
+}
+.react-icons {
+  vertical-align: center;
+  font-size: 30px;
+  margin-top: 10px;
 }
 
 #footer {
@@ -114,11 +122,16 @@ ul {
 #topic {
   text-transform: capitalize;
 }
-
+.article-list {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 15px auto;
+}
 .article-card {
   display: flex;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: flex-start;
   border: solid;
   border-radius: 10px;
   margin: 10px 20px;
@@ -126,8 +139,9 @@ ul {
   box-shadow: 7.5px 7.5px 5px light-dark(lightgray, rgba(0, 0, 0, 0.461));
 }
 #article-card-image {
-  width: 250px;
-  margin: 15px
+  width: 275px;
+  margin: 10px;
+  border-radius: 8px;
 }
 .article-card-text {
   margin-left: 10px;
@@ -192,9 +206,10 @@ option, select {
   border-radius: 10px;
   margin-top: 100px;
   margin-bottom: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px;
+  width: 70%;
   box-shadow: 7.5px 7.5px 5px light-dark(lightgray, rgba(0, 0, 0, 0.461));
 }
 #topic-div {
@@ -434,9 +449,32 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1050px) {
   .article-card {
     flex-direction: column;
+  }
+  #article-card-image {
+    width: 275px;
+    margin: 10px;
+    border-radius: 8px;
+  }
+  .article-card-votes {
+    flex-direction: row;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .article-list {
+    width: 95%;
+  }
+  .article-card {
+    flex-direction: column;
+  }
+  #article-card-image {
+    width: 275px;
+    margin: 10px;
+    border-radius: 8px;
   }
   .article-card-votes {
     flex-direction: row;
@@ -456,5 +494,8 @@ button:hover {
   }
   #direction-select {
     width: 35%;
+  }
+  .single-article-card {
+    width: 80%
   }
 }
