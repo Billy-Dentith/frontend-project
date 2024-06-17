@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../api";
 // import { Link } from "react-router-dom";
-import LottieLoading from "./LottieLoading";
+// import LottieLoading from "./LottieLoading";
 
 const Users = () => {
     const [users, setUsers] = useState([]);

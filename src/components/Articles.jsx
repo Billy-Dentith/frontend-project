@@ -3,7 +3,7 @@ import { Link, useSearchParams, useParams } from 'react-router-dom'
 import { getArticles } from "../api";
 // import ArticleCard from "./ArticleCard";
 import ErrorPage from "./ErrorPage";
-import LottieLoading from "./LottieLoading";
+// import LottieLoading from "./LottieLoading";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
