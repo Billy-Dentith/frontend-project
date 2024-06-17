@@ -30,15 +30,13 @@ const Topics = () => {
     return (
         <>
             <h1 className="page-header">Topics</h1>
-            <ul className="article-list">
+            <ul className="topics-list">
             {topics.map((topic) => {
                 return (
                     <li key={topic.slug}>
-                        <Link to={`/topics/${topic.slug}`}>
-                        <div className="topics-card">
+                        <Link to={`/topics/${topic.slug}`} className="topics-card">
                             <h2>{topic.slug}</h2>
                             <p>{topic.description}</p>
-                        </div>
                         </Link>
                     </li>
                 )
