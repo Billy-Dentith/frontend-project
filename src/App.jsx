@@ -9,12 +9,14 @@ import NotFound from './components/ErrorPage';
 import PostArticleForm from './components/PostArticleForm';
 import Users from './components/Users';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
 
   return (
     <UserProvider>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Articles/>}></Route>
         <Route path='/articles' element={<Articles/>}></Route>
