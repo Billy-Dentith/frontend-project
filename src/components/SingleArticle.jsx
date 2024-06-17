@@ -5,6 +5,8 @@ import SingleArticleCard from "./SingleArticleCard";
 import Comments from "./Comments";
 import ErrorPage from "./ErrorPage";
 import DeleteArticle from "./DeleteArticle";
+import { BiUpvote, BiDownvote } from "react-icons/bi";
+
 
 const SingleArticle = () => {
     const { article_id } = useParams();
@@ -60,7 +62,6 @@ const SingleArticle = () => {
             <div id="topic-div">
                 <h2 className="topic-box">{currentArticle.topic}</h2>
                 <DeleteArticle articleAuthor={currentArticle.author} articleId={currentArticle.article_id} setRefreshPage={setRefreshPage}/>
-                {/* <button className="article-delete">Delete</button> */}
             </div>
             <h1 id="article-header">{currentArticle.title}</h1>
             <p id="article-text">Posted on {currentArticle.created_at.split(' ')[0].split('-').reverse().join('-')} at {currentArticle.created_at.split(' ')[1]} by {currentArticle.author}</p>
@@ -71,11 +72,11 @@ const SingleArticle = () => {
                     <h3>Votes</h3>
                     <section id="votes-counter">
                         <button className="vote-button" disabled={voteChange === -1} onClick={() => handleVote(-1)}>
-                            -
+                            <BiDownvote />
                         </button>
                         <p className="article-numbers">{currentArticle.votes}</p>
                         <button className="vote-button" disabled={voteChange === 1} onClick={() => handleVote(1)}>
-                            +
+                            <BiUpvote />
                         </button>
                     </section>
                     <p>{error}</p>

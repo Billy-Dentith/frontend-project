@@ -3,6 +3,7 @@ import { getArticlesComments, patchCommentVote } from "../api";
 import CommentCard from "./CommentCard";
 import PostCommentForm from "./PostCommentForm";
 import DeleteComment from "./DeleteComment";
+import { BiUpvote, BiDownvote } from "react-icons/bi";
 
 const Comments = ({currentArticleId}) => {
     const [comments, setComments] = useState([]);
@@ -91,11 +92,11 @@ const Comments = ({currentArticleId}) => {
                                 <p>{comment.author}</p>
                                 <section id="votes-counter">
                                     <button className="vote-button" disabled={isVoteDisabled(comment.comment_id, -1)} onClick={() => handleVote(comment.comment_id, -1)}>
-                                        -
+                                        <BiDownvote />
                                     </button>
                                     <p>{comment.votes}</p>
                                     <button className="vote-button" disabled={isVoteDisabled(comment.comment_id, 1)} onClick={() => handleVote(comment.comment_id, 1)}>
-                                        +
+                                        <BiUpvote />
                                     </button>
                                 </section>
                                 <p>{comment.created_at.replace('T', ' ').substring(0, 16)}</p>
