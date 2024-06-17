@@ -152,14 +152,16 @@ ul {
 }
 .article-card-votes {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
   align-items: center;
-  margin-left: auto;
-  margin-right: 15px;
+  margin: auto;
 }
-.article-card-votes > p, h3 {
+.article-card-votes > h3 {
   margin: 10px;
+  margin-left: 20px;
+}
+.article-card-votes > p {
+  margin: 10px 20px 10px 5px;
 }
 #article-form {
   display: flex;
@@ -264,11 +266,16 @@ option, select {
   margin: 0px;
 }
 #article-votes > h3 {
-  margin-top: 25px;
   margin-bottom: 0px;
 }
 #article-comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+}
+#article-comments > h3 {
+  margin-bottom: 0px;
 }
 #article-text {
   text-align: center;
@@ -291,21 +298,16 @@ option, select {
 #votes-counter {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  padding: 0px;
-  margin: 0px;
 }
 .vote-button {
-  margin: 5px;
   margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 10px;
-  height: 1.5rem;
+  height: 25px;
   font-size: large;
-  font-weight: bold;
 }
 .article-numbers {
+  margin-top: 18px;
   font-size: large;
   font-weight: bold;
 }
@@ -340,6 +342,7 @@ option, select {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   border-top: solid rgb(220, 220, 220);
   border-width: 2px;
 }
@@ -452,7 +455,9 @@ button:hover {
 @media screen and (max-width: 1050px) {
   .article-card {
     flex-direction: column;
+      text-align: center;
   }
+  
   #article-card-image {
     width: 275px;
     margin: 10px;
@@ -470,6 +475,7 @@ button:hover {
   }
   .article-card {
     flex-direction: column;
+      text-align: center;
   }
   #article-card-image {
     width: 275px;
@@ -497,5 +503,9 @@ button:hover {
   }
   .single-article-card {
     width: 80%
+  }
+  #header a.link {
+    font-size: 22px;
+    font-weight: bold;
   }
 }
