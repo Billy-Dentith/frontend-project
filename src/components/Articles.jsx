@@ -71,8 +71,8 @@ const Articles = () => {
                 let date = article.created_at.replace('T', ' ').substring(0, 16);
                 return (
                     <li className="article-list-item" key={article.article_id}>
-                        <Link to={`/articles/${article.article_id}`}>
-                        <ArticleCard>
+                        {/* <ArticleCard> */}
+                        <Link to={`/articles/${article.article_id}`} className="article-card">
                         <img id= 'article-card-image' src={article.article_img_url}/>
                         <div className="article-card-text">
                             <h3>{article.title}</h3>
@@ -86,8 +86,8 @@ const Articles = () => {
                             <h3>Comments</h3>
                             <p>{article.comment_count}</p>
                         </div>
-                        </ArticleCard>
                         </Link>
+                        {/* </ArticleCard> */}
                     </li>
                 )
             })}
