@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../api";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import LottieLoading from "./LottieLoading";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -23,7 +24,7 @@ const Users = () => {
 
     if (isLoading) {
         return (
-            <h2 id="loading">Loading...</h2>
+            <LottieLoading />
         )
     }
 

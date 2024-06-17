@@ -87,8 +87,10 @@ h2 {
 }
 
 #loading {
-  text-align: center;
-  padding-top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25%;
 }
 #error {
   text-align: center;
@@ -473,6 +475,9 @@ button:hover {
   :root {
     color: white;
     background-color: #242424;
+  }
+  #loading {
+    filter: invert(100%);
   }
 }
 
