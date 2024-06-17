@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams, useParams } from 'react-router-dom'
 import { getArticles } from "../api";
-import ArticleCard from "./ArticleCard";
+// import ArticleCard from "./ArticleCard";
 import ErrorPage from "./ErrorPage";
+import LottieLoading from "./LottieLoading";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
@@ -38,7 +39,7 @@ const Articles = () => {
 
     if (isLoading) {
         return (
-            <h2 id="loading">Loading...</h2>
+            <LottieLoading />
         )
     }
 

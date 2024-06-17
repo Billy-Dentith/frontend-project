@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../api";
 import { Link } from "react-router-dom";
+import LottieLoading from "./LottieLoading";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
@@ -23,7 +24,7 @@ const Topics = () => {
 
     if (isLoading) {
         return (
-            <h2 id="loading">Loading...</h2>
+            <LottieLoading />
         )
     }
 
