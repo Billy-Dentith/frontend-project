@@ -620,13 +620,13 @@ button:hover {
   }
   .navbar .toggle {
     cursor: pointer;
-    background: #ffeaee;;
+    background: light-dark(#ffeaee, #525252);
     border: none;
   }
   .menu-nav {
     list-style: none;
     position: absolute;
-    background: #fff;
+    background: light-dark(#ffeaee, #525252);
     right: 0;
     top: 0;
     width: 0;
