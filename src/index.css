@@ -53,7 +53,7 @@ nav.navbar {
   justify-content: center;
   align-items: center;
   font-size: medium;
-  background-color: #ffeaee;
+  background-color: light-dark(#ffeaee, #525252);
   padding: 10px;
   position: fixed;
   height: 5px;
@@ -104,6 +104,7 @@ h2 {
   /* display: flex;
   justify-content: center;
   align-items: center; */
+  color: light-dark(#000000, #000000);
   padding-top: 25%;
 }
 #error {
@@ -221,7 +222,7 @@ option, select {
 #article-form > button {
   margin: 10px;
   padding: 10px;
-  border: solid black;
+  border: solid light-dark(black, white);
   border-width: 2px;
   font-weight: bold;
 }
@@ -390,7 +391,7 @@ option, select {
 #comment-form > button {
   margin: 10px;
   padding: 10px;
-  border: solid black;
+  border: solid light-dark(black, white);
   border-width: 2px;
   font-weight: bold;
 }
